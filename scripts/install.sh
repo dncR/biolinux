@@ -72,7 +72,7 @@ else
 fi
 
 if [ "$(/opt/STAR/source/STAR --version)" == "2.7.11b" ]; then
-	echo 'export PATH="/opt/STAR/source/:$PATH"' >> ~/.bashrc
+	echo 'export PATH="/opt/STAR/source:$PATH"' >> ~/.bashrc
 	source ~/.bashrc
 fi
 

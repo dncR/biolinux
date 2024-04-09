@@ -9,7 +9,7 @@ services:
         - ARCH=${ARCH}
         - DOCKER_IMAGE=dncr/rstudio-server:4.3.3-arm64-jammy
     # Define container name before building it.
-    container_name: tmp
+    container_name: biolinux-ubuntu
     # set restart policy for the container
     restart: "unless-stopped"
     # Setting this to something other than 'root' will cause shiny apps not to
