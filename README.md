@@ -9,4 +9,5 @@ Linux Docker Image for Bioinformatics Analysis
 `cd biolinux`
 
 2. **Run Docker Compose in the biolinux directory**
+
 `docker compose -f ./build/build.yml up -d`
