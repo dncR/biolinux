@@ -1,13 +1,5 @@
 #!/bin/bash
 
-## Install R from source.
-##
-## In order of preference, first argument of the script, the R_VERSION variable.
-## ex. latest, devel, patched, 4.0.0
-##
-## 'devel' means the prerelease development version (Latest daily snapshot of development version).
-## 'patched' means the prerelease patched version (Latest daily snapshot of patched version).
-
 set -e
 
 ARCH=${ARCH:-"arm64"}
@@ -16,13 +8,6 @@ ARCH=${ARCH:-"arm64"}
 source /etc/os-release
 
 apt-get update
-
-APT_UPGRADE=${APT_UPGRADE:-"no"}
-if [ "${APT_UPGRADE}" == "yes" ]; then
-	echo -e "Upgrading linux packages... \n"
-	apt upgrade -y
-fi
-
 apt-get -y install locales
 
 ## Configure default locale
@@ -32,8 +17,7 @@ LANG=${LANG:-"en_US.UTF-8"}
 
 # Install Linux libraries.
 apt-get update
-apt-get install -y \
-    curl \
+apt-get -y install curl \
     g++ \
     gfortran \
     libblas-dev \
@@ -55,12 +39,10 @@ apt-get install -y \
     libhts-dev
 
 # Install Java and Reconfigure Java for R
-apt-get update && apt-get install -y \
-	default-jdk
+apt-get -y install default-jdk
 
 # Install RNASeq Tools
-apt install -y \
-	fastqc \
+apt-get -y install fastqc \
 	samtools
 
 # Get latest STAR source from releases
@@ -91,6 +73,14 @@ apt install -y subread
 
 echo -e "Successfully finished installation... \n"
 
+APT_UPGRADE=${APT_UPGRADE:-"no"}
+if [ "${APT_UPGRADE}" == "yes" ]; then
+	echo -e "Upgrading linux packages... \n"
+	apt-get update
+	apt-get -y upgrade
+	apt-get --purge -y autoremove
+	apt-get autoclean
+fi
 
 
 

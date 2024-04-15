@@ -20,7 +20,7 @@ services:
         - LANG=${LANG_SET}
         - ARCH=${ARCH}  
         - DOCKER_IMAGE=dncr/rstudio-server:${R_VERSION}-${ARCH}-${UBUNTU_CODE_NAME}
-        - APT_UPGRADE=no
+        - APT_UPGRADE=${APT_UPGRADE}
     container_name: biolinux-ubuntu
     restart: "unless-stopped"
     tty: true
