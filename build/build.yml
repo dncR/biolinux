@@ -8,22 +8,34 @@ services:
     build:
       context: ../
       dockerfile: dockerfiles/bio-linux.Dockerfile
+      # LANG: System-wide language/region setting. Default is "en_US.UTF-8" 
+      # ARCH: System architecture. Options are 
+      #   - "amd64" (e.g., Intel based chips) or 
+      #   - "arm64" (e.g., Apple's M-series chips)
+      # APT_UPGRADE: If "yes", pre-built linux packages will be upgraded to the latest versions. 
+      #              Default is "no".
+      # UBUNTU_CODE_NAME: Ubuntu version. Default is "jammy".
+      # R_VERSION: R version. Default is 4.3.3
       args:
         - LANG=${LANG_SET}
-        - ARCH=${ARCH}
-        - DOCKER_IMAGE=dncr/rstudio-server:4.3.3-arm64-jammy
+        - ARCH=${ARCH}  
+        - DOCKER_IMAGE=dncr/rstudio-server:${R_VERSION}-${ARCH}-${UBUNTU_CODE_NAME}
+        - APT_UPGRADE=no
     container_name: biolinux-ubuntu
     restart: "unless-stopped"
     tty: true
     stdin_open: true
     user: 'root'
+    env_file:
+     - .env
     environment:
       - PASSWORD=rstudio**
     ports:
       - "8004:8787"
     volumes:
       #- shared-data:/mnt/shared-volume-docker
-      - /Users/dncr:/home/rstudio/externalvolume      
+      #- /Users/dncr:/home/rstudio/externalvolume
+      - /home/dncr:/home/rstudio/externalvolume  
     #deploy:
     #  resources:
     #    limits:

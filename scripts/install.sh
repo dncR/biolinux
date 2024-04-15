@@ -16,6 +16,13 @@ ARCH=${ARCH:-"arm64"}
 source /etc/os-release
 
 apt-get update
+
+APT_UPGRADE=${APT_UPGRADE:-"no"}
+if [ "${APT_UPGRADE}" == "yes" ]; then
+	echo -e "Upgrading linux packages... \n"
+	apt upgrade -y
+fi
+
 apt-get -y install locales
 
 ## Configure default locale
@@ -77,11 +84,12 @@ if [ "$(/opt/STAR/source/STAR --version)" == "2.7.11b" ]; then
 fi
 
 # Check if STAR is successfully installed from source.
-echo $(STAR --version)
+echo -e $(STAR --version)
 
 # Install featureCounts (available thorugh ubuntu package "subread").
 apt install -y subread
 
+echo -e "Successfully finished installation... \n"
 
 
 

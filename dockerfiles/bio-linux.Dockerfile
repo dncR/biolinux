@@ -5,6 +5,7 @@ FROM ${DOCKER_IMAGE}
 
 # Define BUILD args.
 ARG LANG
+ARG APT_UPGRADE
 
 # Import values of ARGs from ENVIRONMENT
 ENV LANG=${LANG}
