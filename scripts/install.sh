@@ -18,32 +18,33 @@ LANG=${LANG:-"en_US.UTF-8"}
 # Install Linux libraries.
 apt-get update
 apt-get -y install curl \
-    g++ \
-    gfortran \
-    libblas-dev \
-    libbz2-* \
-    libcurl4 \
-    make \
-    tzdata \
-    unzip \
-    zip \
-    zlib1g \
-    wget \
-    nano \
-    libx11-dev \
-    xxd \
-    perl \
-    tcl-dev \
-    tk-dev \
-    zlib1g-dev \
-    libhts-dev
+  g++ \
+  gfortran \
+  libblas-dev \
+  libbz2-* \
+  libcurl4 \
+  make \
+  tzdata \
+  unzip \
+  zip \
+  zlib1g \
+  wget \
+  nano \
+  libx11-dev \
+  xxd \
+  perl \
+  tcl-dev \
+  tk-dev \
+  zlib1g-dev \
+  libhts-dev
 
 # Install Java and Reconfigure Java for R
 apt-get -y install default-jdk
 
 # Install RNASeq Tools
 apt-get -y install fastqc \
-	samtools
+  samtools \
+  trimmomatic
 
 # Get latest STAR source from releases
 cd /opt
@@ -81,17 +82,3 @@ if [ "${APT_UPGRADE}" == "yes" ]; then
 	apt-get --purge -y autoremove
 	apt-get autoclean
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
