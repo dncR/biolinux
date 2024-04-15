@@ -4,7 +4,7 @@
 
 services:
   bio-linux-ubuntu:
-    image: dncr/bio-linux:ubuntu-${ARCH}
+    image: dncr/bio-linux:ubuntu-${ARCH}-${UBUNTU_CODE_NAME}
     build:
       context: ../
       dockerfile: dockerfiles/bio-linux.Dockerfile
